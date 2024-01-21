@@ -1,6 +1,4 @@
-# Task Description
-
-## Build an NLP Bot for Science Queries
+# NLP Bot for Science Queries
 
 ### Introduction
 
@@ -98,14 +96,39 @@ class BotLogic:
 To use the NLP bot, you can instantiate the `BotLogic` class and call the `generate_response` method with a user query. Here's an example:
 
 ```python
+#app.py
+from flask import Flask, request, jsonify
 from bot_logic import BotLogic
 
-# Instantiate the bot logic
-instance = BotLogic()
+app = Flask(__name__)
+bot_logic = BotLogic()
 
-# Get a response for a user query
-response = instance.generate_response("What is photosynthesis?")
-print(response)
+@app.route('/execute', methods=['POST'])
+def execute():
+    try:
+        # Get the JSON data from the request
+        data = request.get_json()
+
+        # Ensure the 'text' key is present in the request
+        if 'text' not in data:
+            return jsonify({'error': 'Missing "text" parameter'}), 400
+
+        # Get the text from the 'text' parameter
+        input_text = data['text']
+
+        # Process the input using BotLogic
+        response = bot_logic.generate_response(input_text)
+
+        # Return the response in JSON format
+        return jsonify({'response': response})
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+if __name__ == '__main__':
+    # Run the Flask application
+    app.run(debug=True, host='0.0.0.0', port=8000)
+
 ```
 
 This example demonstrates how to interact with the bot and receive a response based on the user's science-related query.
