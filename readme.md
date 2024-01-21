@@ -110,8 +110,8 @@ print(response)
 
 This example demonstrates how to interact with the bot and receive a response based on the user's science-related query.
 
-![1705067940373](image/notes/1705067940373.png)
+![1705067940373](images/notes/1705067940373.png)
 
 ### **Sending api request via PostMan:**
 
-![1705069408393](image/notes/1705069408393.png)![1705069491836](image/notes/1705069491836.png)![1705069589716](image/notes/1705069589716.png)
+![1705069408393](images/notes/1705069408393.png)![1705069491836](images/notes/1705069491836.png)![1705069589716](images/notes/1705069589716.png)
